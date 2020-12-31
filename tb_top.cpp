@@ -1,8 +1,8 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
-#include "Vt.h"
-#include "Vt__Dpi.h"
+#include "Vtb_top.h"
+#include "Vtb_top__Dpi.h"
 #include <ctime>
 
 #if VM_TRACE
@@ -17,7 +17,7 @@ double sc_time_stamp() {
 
 int main(int argc, char **argv, char **env){
 
-    Vt* top = new Vt;
+    Vtb_top* top = new Vtb_top;
     
 #if VM_TRACE
     Verilated::traceEverOn(true);

@@ -13,7 +13,7 @@ COMPILE_OPT=-cc -no-decoration -O3 -CFLAGS -Wno-attributes -CFLAGS -O2
 # Clock signals
 # CLOCK_OPT=-clk v_clk
 
-VERILOG_SRC= t.sv
+VERILOG_SRC= tb_top.sv
 
 VERILOG_PARAMS?=
 SIM_ARGS=
@@ -36,19 +36,19 @@ else
 endif
 
 # Verilog top module
-TOP_FILE=t
+TOP_FILE=tb_top
 
 # C++ support files
 DPI_C_FILES = dpi.cpp
 
-CPP_FILES=t.cpp $(DPI_C_FILES)
+CPP_FILES=tb_top.cpp $(DPI_C_FILES)
 
 
 .phony: sim
 sim: sim_$(SIM)
 
 clean:
-	rm -rf $(BUILD_DIR) *.vcd  *.wlf transcript *.jou *.pb obj_dir xsim.dir Vt__Dpi.h
+	rm -rf $(BUILD_DIR) *.vcd  *.wlf transcript *.jou *.pb obj_dir xsim.dir Vtb_top__Dpi.h
 
 # Simulation on verilator ---------------------------------------------------------------
 
@@ -69,7 +69,7 @@ $(BUILD_DIR)/$(TOP_FILE).mk: $(CPP_FILES) $(VERILOG_SRC) $(DPI_C_FILES)
 # Simulation on questasim ----------------------------------------------------------------
 
 $(BUILD_DIR)/_vmake $(BUILD_DIR)/_lib.qdb: $(VERILOG_SRC) $(DPI_C_FILES)
-	@vlog -work $(BUILD_DIR) $(COMPILE_ARGS)  $(VERILOG_SRC) $(VERILOG_DEFINES) $(DPI_C_FILES) -dpiheader Vt__Dpi.h
+	@vlog -work $(BUILD_DIR) $(COMPILE_ARGS)  $(VERILOG_SRC) $(VERILOG_DEFINES) $(DPI_C_FILES) -dpiheader Vtb_top__Dpi.h
 
 sim_questa: $(BUILD_DIR)/_vmake $(BUILD_DIR)/_lib.qdb
 	@vsim $(BUILD_DIR).$(TOP_FILE) $(VERILOG_PARAMS) $(SIM_ARGS)

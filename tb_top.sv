@@ -1,4 +1,4 @@
-module t (
+module tb_top (
     `ifdef SIM_VERILATOR
         input v_clk
     `endif
