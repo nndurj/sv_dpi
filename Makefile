@@ -30,8 +30,8 @@ else
 		SIM_ARGS+=-batch -do "run -all"
 		COMPILE_ARGS+=-vopt
 	else
-		SIM_ARGS+=-gui
-		COMPILE_ARGS+=+acc -timescale 10ns/1ns
+		SIM_ARGS+=-gui -voptargs="+acc"
+		COMPILE_ARGS+= -timescale 10ns/1ns
 	endif
 endif
 
