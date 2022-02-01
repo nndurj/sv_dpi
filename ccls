@@ -1,0 +1,6 @@
+clang++
+-I/usr/local/include/pcapplusplus
+-I/usr/include
+-I./
+-std=c++14
+-stdlib=stdlibc++
